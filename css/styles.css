@@ -767,24 +767,24 @@ footer {
     .course-card {
         position: relative;
         overflow: hidden;
-        border-radius: 10px; /* Optional: rounded corners */
+        border-radius: 10px; 
         text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: for a card effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     }
     
     .course-image {
         display: block;
         width: 100%;
         height: 100%;
-        max-height: 200px; /* Controls maximum height within the card */
-        object-fit: cover; /* Ensures the image fills the space without distortion */
-        border-radius: 10px 10px 0 0; /* Optional: rounded top corners */
+        max-height: 200px; 
+        object-fit: cover; 
+        border-radius: 10px 10px 0 0; 
     }
     
     .course-card h3,
     .course-card p {
         margin: 10px 0;
-        padding: 0 15px; /* Optional: add padding for text */
+        padding: 0 15px;
     }
     
 
@@ -924,16 +924,16 @@ footer {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 10px; /* Adjust this if you want rounded corners */
+        border-radius: 10px; 
     }
     
     .slide {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 400px; /* Set desired container height */
-        width: 100%; /* Full-width for responsiveness */
-        overflow: hidden; /* Prevent overflow */
+        height: 400px; 
+        width: 100%; 
+        overflow: hidden;
         position: relative;
     }
 
