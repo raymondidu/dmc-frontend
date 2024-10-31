@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png">
+    <link rel="stylesheet" href="css/pay.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/error.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="payment-section">
+        <h1 class="payment-title">Select your preferred amount and<br>mode of payment.</h1>
+        
+        <div class="payment-options">
+            <div class="payment-card active" data-plan="yearly">
+                <div class="card-content">
+                    <div class="plan-label">Yearly Payment</div>
+                    <div class="price">$1000</div>
+                    <div class="renewal-text" id="renewalDate">To be renewed in <span></span></div>
+                </div>
+                <div class="radio-button">
+                    <span class="radio-circle"></span>
+                </div>
+            </div>
+    
+            <div class="divider">OR</div>
+    
+            <div class="payment-card" data-plan="lifetime">
+                <div class="card-content">
+                    <div class="plan-label">Life time payment</div>
+                    <div class="price">$5000</div>
+                    <div class="renewal-text">No renewal required.</div>
+                </div>
+                <div class="radio-button">
+                    <span class="radio-circle"></span>
+                </div>
+            </div>
+        </div>
+    
+        <button class="next-button">NEXT</button>
+    </section>
+
+        <!-- Error Popup -->
+        <div class="error-popup" id="errorPopup">
+            <div class="error-content">
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="error-message">Error message goes here</span>
+            </div>
+        </div>
+    
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="spinner">
+                <div class="spinner-ring"></div>
+                <span class="loading-text">Please wait...</span>
+            </div>
+        </div>
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Get current date and set renewal date
+    const currentDate = new Date();
+    const renewalDate = new Date(currentDate);
+    renewalDate.setMonth(renewalDate.getMonth() + 12);
+    
+    // Format the date
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedDate = renewalDate.toLocaleDateString('en-US', options);
+    
+    // Display the date
+    const renewalElement = document.querySelector('#renewalDate span');
+    if (renewalElement) {
+        renewalElement.textContent = formattedDate;
+    }
+
+    // Handle payment card selection
+    const paymentCards = document.querySelectorAll('.payment-card');
+    paymentCards.forEach(card => {
+        card.addEventListener('click', () => {
+            paymentCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+        });
+    });
+
+    // Handle next button click
+    const nextButton = document.querySelector('.next-button');
+    nextButton.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        try {
+            // Get the selected payment plan and amount
+            const selectedCard = document.querySelector('.payment-card.active');
+            const planType = selectedCard.getAttribute('data-plan');
+            const requiredAmount = planType === 'yearly' ? 1000 : 5000;
+
+            // Get the stored membership data
+            const membershipData = JSON.parse(sessionStorage.getItem('membershipData'));
+
+            if (!membershipData) {
+                showError('No membership data found. Please fill out the membership form first.');
+                return;
+            }
+
+            // Combine the data
+            const finalData = {
+                ...membershipData,
+                requiredAmount: requiredAmount,
+                planType: planType
+            };
+
+            // Show loading overlay
+            showLoading();
+
+            // Make the API request
+            fetch('https://app.digitalmoney.club/api/v1/store-profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(finalData)
+            })
+            .then(response => {
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json().catch(error => {
+                    throw new Error('Invalid JSON response from server');
+                });
+            })
+            .then(data => {
+                console.log('Response Data:', data);
+
+                if (!data) {
+                    throw new Error('Empty response from server');
+                }
+
+                // Store the bank details
+                sessionStorage.setItem('requiredAmount', requiredAmount);
+                sessionStorage.setItem('bankDetails', JSON.stringify(data));
+                
+                // Redirect to payment tabs
+                window.location.href = 'paymenttabs.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showError('Failed to process your request. Please try again.');
+            })
+            .finally(() => {
+                hideLoading();
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            showError('An unexpected error occurred. Please try again.');
+            hideLoading();
+        }
+    });
+
+    // Simplified utility functions using existing elements
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const errorPopup = document.getElementById('errorPopup');
+    const errorMessage = errorPopup.querySelector('.error-message');
+
+    function showLoading() {
+        loadingOverlay.classList.add('show');
+    }
+
+    function hideLoading() {
+        loadingOverlay.classList.remove('show');
+    }
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorPopup.classList.add('show');
+        setTimeout(() => errorPopup.classList.remove('show'), 3000);
+    }
+});
+</script>

@@ -1,0 +1,329 @@
+/* Basic reset and body styles */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Geologica', sans-serif;
+    font-size: 16px;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Container styles */
+.payment-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Timer styles */
+.timer {
+    font-size: 3.5rem;
+    color: #ff4d4d;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 500;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.timer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(255, 77, 77, 0.1);
+    z-index: -1;
+    animation: timerPulse 2s infinite;
+}
+
+/* Text styles */
+.main-text {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 0.4s ease-out 0.1s both;
+}
+
+.sub-text {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.4s ease-out 0.2s both;
+}
+
+/* Card styles */
+.card-wrapper {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    animation: fadeInUp 0.4s ease-out 0.3s both;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Wallet section styles */
+.wallet-label {
+    color: #ffa502;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.wallet-input-group {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.wallet-address {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+
+.copy-btn {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin-right: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background-color: #ff6666;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(255, 77, 77, 0.4);
+}
+
+/* Network text styles */
+.network-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.network-value {
+    color: #ff4d4d;
+}
+
+/* Divider styles */
+.or-divider {
+    position: relative;
+    text-align: center;
+    margin: 30px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.or-divider::before { left: 0; }
+.or-divider::after { right: 0; }
+
+/* QR section styles */
+.qr-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qr-text {
+    font-size: 1.2rem;
+    color: #fff;
+    max-width: 50%;
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    transition: transform 0.3s ease;
+}
+
+.qr-code:hover {
+    transform: scale(1.05);
+}
+
+/* Amount section styles */
+.dotted-line {
+    border-top: 8px dotted #fff;
+    margin: 30px 0;
+}
+
+.amount-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.amount-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.amount-value {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: 500;
+    animation: pulse 2s infinite;
+}
+
+/* Button styles */
+.pay-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+/* Note styles */
+.note-title {
+    color: #ffa502;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.note-text {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 10px auto;
+    line-height: 1.5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes timerPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    body { font-size: 14px; }
+    .payment-container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+    .timer { font-size: 2.8rem; }
+    .main-text { font-size: 1.3rem; }
+    .sub-text { font-size: 0.9rem; }
+    .copy-btn {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+    }
+    .qr-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .qr-text {
+        max-width: 100%;
+        text-align: center;
+    }
+    .qr-code {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-container { padding: 10px; }
+    .timer { font-size: 2.5rem; }
+    .wallet-input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .copy-btn {
+        width: 100%;
+        margin: 0;
+    }
+    .amount-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .amount-value { font-size: 1.8rem; }
+}
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.qr-code img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

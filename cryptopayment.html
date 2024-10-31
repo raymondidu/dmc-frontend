@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Keep Bootstrap version consistent -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Load your custom CSS after Bootstrap -->
+    <link rel="stylesheet" href="css/error.css">
+    <link rel="stylesheet" href="css/count.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode.js@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container payment-container">
+        <div class="timer">30:00</div>
+        
+        <div class="main-text">Please make your payment before the timer runs out.</div>
+        <div class="sub-text">Make sure you send the exact amount below to the wallet address and network below or your payment will be lost and unconfirmed.</div>
+        
+        <div class="card-wrapper">
+            <div class="wallet-label">Wallet Address</div>
+            <div class="wallet-input-group">
+                <input type="text" class="wallet-address" value="" readonly>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <div class="network-text">
+                Crypto Network: <span class="network-value">TRC20</span>
+            </div>
+        </div>
+
+        <div class="or-divider">OR</div>
+
+        <div class="card-wrapper">
+            <div class="qr-section">
+                <div class="qr-text">YOU CAN ALSO PAY BY SCANNING THIS QR CODE:</div>
+                <img src="assets/qr.png" alt="QR Code" class="qr-code">
+            </div>
+        </div>
+
+        <div class="dotted-line"></div>
+
+        <div class="amount-section">
+            <span class="amount-label">Pay exactly:</span>
+            <span class="amount-value">1000 USDT</span>
+        </div>
+
+        <div class="payment-instruction">Press the Button below if you have paid.</div>
+
+        <button class="pay-btn">I HAVE PAID</button>
+
+        <div class="note-title">NOTE:</div>
+        <p class="note-text">
+            The above wallet only valid for 30 minutes. If you make your payment after the time elapses, 
+            it will not be received and your money will be lost. If you are unable to pay when the time elapses, 
+            please generate a new wallet.
+        </p>
+    </div>
+
+    <!-- Load all JS dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <!-- Load your custom JS last -->
+    <script src="js/count.js"></script>
+
+    <!-- Error Popup -->
+    <div class="error-popup" id="errorPopup">
+        <div class="error-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="error-message">Error message goes here</span>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner">
+            <div class="spinner-ring"></div>
+            <span class="loading-text">Please wait...</span>
+        </div>
+    </div>
+</body>
+</html>

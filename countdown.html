@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Make Payment</title>
+    <link rel="stylesheet" href="css/error.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Geologica', sans-serif;
+    font-size: 16px;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.payment-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+.timer {
+    font-size: 3.5rem;
+    color: #ff4d4d;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 500;
+}
+.main-text {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.sub-text {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+.card-wrapper {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+.wallet-label {
+    color: #ffa502;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+.wallet-input-group {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+.wallet-address {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+.copy-btn {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin-right: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.network-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+.network-value {
+    color: #ff4d4d;
+}
+.or-divider {
+    position: relative;
+    text-align: center;
+    margin: 30px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+}
+.or-divider::before,
+.or-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.or-divider::before {
+    left: 0;
+}
+.or-divider::after {
+    right: 0;
+}
+.qr-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.qr-text {
+    font-size: 1.2rem;
+    color: #fff;
+    max-width: 50%;
+}
+.qr-code {
+    width: 150px;
+    height: 150px;
+}
+.dotted-line {
+    border-top: 8px dashed #fff;
+    margin: 30px 0;
+}
+.amount-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+.amount-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+.amount-value {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: 500;
+}
+.payment-instruction {
+    text-align: center;
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 20px 0;
+}
+.pay-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 20px 0;
+}
+.note-title {
+    color: #ffa502;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    font-weight: 500;
+}
+.note-text {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 10px auto;
+    line-height: 1.5;
+}
+
+
+.pay-btn {
+    transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .payment-container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+    
+    .timer {
+        font-size: 2.8rem;
+    }
+    
+    .main-text {
+        font-size: 1.3rem;
+        padding: 0 10px;
+    }
+    
+    .sub-text {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+    
+    .wallet-label {
+        font-size: 1.1rem;
+    }
+    
+    .wallet-address {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+
+    
+    .qr-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .qr-text {
+        max-width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+    
+    .qr-code {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+    
+    .amount-value {
+        font-size: 2rem;
+    }
+    
+    .payment-instruction {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-container {
+        padding: 10px;
+    }
+
+    .copy-btn {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .timer {
+        font-size: 2.5rem;
+    }
+    
+    .main-text {
+        font-size: 1.1rem;
+    }
+    
+    .card-wrapper {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .wallet-input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+
+    
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .amount-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .amount-value {
+        font-size: 1.8rem;
+    }
+}
+
+@keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Add animation classes */
+        .timer {
+            animation: pulse 2s infinite;
+        }
+
+        .main-text {
+            animation: fadeInUp 0.4s ease-out 0.1s both;
+        }
+
+        .sub-text {
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .card-wrapper {
+            animation: fadeInUp 0.6s ease-out 0.6s both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .wallet-label {
+            animation: slideIn 0.6s ease-out 0.8s both;
+        }
+
+        .wallet-input-group {
+            animation: fadeInUp 0.6s ease-out 1s both;
+        }
+
+        .or-divider {
+            animation: fadeInUp 0.6s ease-out 1.2s both;
+        }
+
+        .qr-section {
+            animation: fadeInUp 0.6s ease-out 1.4s both;
+        }
+
+        .qr-code {
+            transition: transform 0.3s ease;
+        }
+
+        .qr-code:hover {
+            transform: scale(1.05);
+        }
+
+        .dotted-line {
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out 1.6s both;
+        }
+
+        .amount-section {
+            animation: fadeInUp 0.6s ease-out 1.8s both;
+        }
+
+        .amount-value {
+            animation: pulse 2s infinite;
+        }
+
+        .payment-instruction {
+            animation: fadeInUp 0.6s ease-out 2s both;
+        }
+
+        .pay-btn {
+            animation: fadeInUp 0.6s ease-out 2.2s both;
+            transition: all 0.3s ease;
+        }
+
+        .pay-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .note-title {
+            animation: fadeInUp 0.6s ease-out 2.4s both;
+        }
+
+        .note-text {
+            animation: fadeInUp 0.6s ease-out 2.6s both;
+        }
+
+
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(255, 77, 77, 0.4);
+        }
+
+        /* Add shine effect to the wallet address field */
+        .wallet-input-group::after {
+            content: '';
+            position: absolute;
+            top: -150%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            from {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            to {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        /* Enhanced timer pulse effect */
+        .timer {
+            position: relative;
+        }
+
+        .timer::after {
+            content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(255, 77, 77, 0.1);
+    z-index: -1;
+    animation: timerPulse 2s infinite;
+        }
+
+        @keyframes timerPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container payment-container">
+        <div class="timer">30:00</div>
+        
+        <div class="main-text">Please make your payment before the timer runs out.</div>
+        <div class="sub-text">Make sure you send the exact amount below to the wallet address and network below or your payment will be lost and unconfirmed.</div>
+        
+        <div class="card-wrapper">
+            <div class="wallet-label">Wallet Address</div>
+            <div class="wallet-input-group">
+                <input type="text" class="wallet-address" 
+                       value="313q32423513543534535648431468161681384" readonly>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <div class="network-text">
+                Crypto Network: <span class="network-value">TRC20</span>
+            </div>
+        </div>
+
+        <div class="or-divider">OR</div>
+
+        <div class="card-wrapper">
+            <div class="qr-section">
+                <div class="qr-text">YOU CAN ALSO PAY BY SCANNING THIS QR CODE:</div>
+                <img src="assets/qr.png" alt="QR Code" class="qr-code">
+            </div>
+        </div>
+
+        <div class="dotted-line"></div>
+
+        <div class="amount-section">
+            <span class="amount-label">Pay exactly:</span>
+            <span class="amount-value">1000 USDT</span>
+        </div>
+
+        <div class="payment-instruction">Press the Button below if you have paid.</div>
+
+        <button class="pay-btn">I HAVE PAID</button>
+
+        <div class="note-title">NOTE:</div>
+        <p class="note-text">
+            The above wallet only valid for 30 minutes. If you make your payment after the time elapses, 
+            it will not be received and your money will be lost. If you are unable to pay when the time elapses, 
+            please generate a new wallet.
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Countdown Timer
+        function startTimer(duration, display) {
+            let timer = duration;
+            const interval = setInterval(function () {
+                const minutes = parseInt(timer / 60, 10);
+                const seconds = parseInt(timer % 60, 10);
+
+                const displayMinutes = minutes < 10 ? "0" + minutes : minutes;
+                const displaySeconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = displayMinutes + ":" + displaySeconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "00:00";
+                }
+            }, 1000);
+        }
+
+        // Copy button functionality
+        function setupCopyButton() {
+            const copyBtn = document.querySelector('.copy-btn');
+            const walletAddress = document.querySelector('.wallet-address');
+
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(walletAddress.value);
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = 'Copied!';
+                    copyBtn.style.backgroundColor = '#28a745';
+                    
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                        copyBtn.style.backgroundColor = '#ff4d4d';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                }
+            });
+        }
+
+        // Initialize when document is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start 30-minute countdown
+            const thirtyMinutes = 30 * 60;
+            const display = document.querySelector('.timer');
+            startTimer(thirtyMinutes, display);
+
+            // Setup copy button
+            setupCopyButton();
+        });
+    </script>
+</body>
+</html>

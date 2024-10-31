@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo.png">
+    <link rel="stylesheet" href="css/membership.css">
+    <link rel="stylesheet" href="css/error.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Become a Member</h1>
+            <button class="close-btn">&times;</button>
+        </div>
+        <p class="form-subtitle">Kindly provide the required info below.</p>
+        
+        <form class="membership-form">
+            <div class="form-group">
+                <label>Full name</label>
+                <div class="name-inputs">
+                    <input type="text" placeholder="First name" class="form-input">
+                    <input type="text" placeholder="Last name" class="form-input">
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="gender-options">
+                    <button type="button" class="gender-btn active">Male</button>
+                    <button type="button" class="gender-btn">Female</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Phone number</label>
+                <div class="phone-input-container">
+                    <input type="text" placeholder="+234" class="country-code">
+                    <input type="tel" placeholder="684 468 8913" class="phone-number-input">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="eg: johndoe@email.com" class="form-input">
+            </div>
+    
+            <div class="form-group">
+                <label>Provide your address</label>
+                <input type="text" placeholder="Address" class="form-input">
+                <input type="text" placeholder="State" class="form-input mt-3">
+            </div>
+    
+            <div class="form-group">
+                <label>Enter your date of Birth</label>
+                <input type="text" placeholder="YYYY-MM-DD" class="form-input">
+            </div>
+    
+            <button id="nextButton" class="next-btn">NEXT</button>
+        </form>
+    </div>
+
+    <!-- Error Popup -->
+    <div class="error-popup" id="errorPopup">
+        <div class="error-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="error-message">Error message goes here</span>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner">
+            <div class="spinner-ring"></div>
+            <span class="loading-text">Please wait...</span>
+        </div>
+    </div>
+
+ 
+</body>
+</html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    console.log('Finished Loading');
+
+    const form = document.querySelector('.membership-form');
+    const nextButton = document.getElementById('nextButton');
+
+    console.log(nextButton);
+
+    nextButton.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default button behavior
+
+        console.log('Button clicked');
+
+        // Collect all form data
+        const formData = {
+            firstname: form.querySelector('input[placeholder="First name"]').value,
+            lastname: form.querySelector('input[placeholder="Last name"]').value,
+            gender: form.querySelector('.gender-btn.active').textContent,
+            phone: form.querySelector('.country-code').value+form.querySelector('.phone-number-input').value,
+            email: form.querySelector('input[type="email"]').value,
+            address: form.querySelector('input[placeholder="Address"]').value,
+            state: form.querySelector('input[placeholder="State"]').value,
+            dob: form.querySelector('input[placeholder="YYYY-MM-DD"]').value
+        };
+
+        // Validate form data
+        const validation = validateForm(formData);
+        if (!validation.isValid) {
+            errorPopup.show(Object.values(validation.errors)[0]);
+            console.log('Form errors:', validation.errors);
+            return;
+        }
+
+        // Show loading overlay
+        loadingOverlay.show();
+
+        sessionStorage.setItem('membershipData', JSON.stringify(formData));
+        console.log('Stored data:', formData);
+            
+
+        loadingOverlay.hide();
+
+        // Navigate to payment page
+         window.location.href = 'pay.html';
+
+        // Make AJAX request
+        // fetch('https://app.digitalmoney.club/api/v1/store-profile', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(formData)
+        // })
+        // .then(response => {
+        //     if (!response.ok) {
+        //         throw new Error('Network response was not ok');
+        //     }
+        //     return response.json();
+        // })
+        // .then(data => {
+        //     // Store in sessionStorage
+        //     sessionStorage.setItem('membershipData', JSON.stringify(formData));
+        //     console.log('Stored data:', formData);
+            
+        //     // Navigate to payment page
+        //     window.location.href = 'paymenttabs.html';
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        //     errorPopup.show('Failed to submit form. Please try again.');
+        // })
+        // .finally(() => {
+        //     loadingOverlay.hide();
+        // });
+    });
+
+    // Gender button selection
+    const genderBtns = document.querySelectorAll('.gender-btn');
+    genderBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            genderBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // Date input formatting
+    const dateInput = document.querySelector('input[placeholder="YYYY-MM-DD"]');
+    if(dateInput) {
+        dateInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '').substring(0, 8);
+            if (value.length >= 6) {
+                value = value.replace(/(\d{4})(\d{2})(\d{0,2})/, "$1-$2-$3");
+            } else if (value.length >= 4) {
+                value = value.replace(/(\d{4})(\d{0,2})/, "$1-$2");
+            }
+            e.target.value = value;
+        });
+    }
+
+    // Validation function
+    function validateForm(formData) {
+        const errors = {};
+        if (!formData.firstname) errors.firstName = 'First name is required';
+        if (!formData.lastname) errors.lastName = 'Last name is required';
+        if (!formData.email) errors.email = 'Email is required';
+        if (!formData.phone) errors.phone = 'Phone number is required';
+        if (!formData.dob) errors.dateOfBirth = 'Date of birth is required';
+        
+        // Validate date format (YYYY-MM-DD)
+        if (formData.dateOfBirth && !/^\d{4}-\d{2}-\d{2}$/.test(formData.dateOfBirth)) {
+            errors.dateOfBirth = 'Invalid date format. Use YYYY-MM-DD';
+        }
+        
+        return {
+            isValid: Object.keys(errors).length === 0,
+            errors
+        };
+    }
+
+    // Utility functions for error popup and loading overlay
+    const errorPopup = {
+        show: function(message, duration = 3000) {
+            const popup = document.getElementById('errorPopup');
+            const messageElement = popup.querySelector('.error-message');
+            messageElement.textContent = message;
+            popup.classList.add('show');
+            setTimeout(() => popup.classList.remove('show'), duration);
+        }
+    };
+
+    const loadingOverlay = {
+        show: function() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        },
+        hide: function() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+    };
+});
+</script>

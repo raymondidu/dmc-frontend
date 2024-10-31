@@ -1,0 +1,221 @@
+body {
+    font-family: 'Geologica', sans-serif;
+    background-color: #000;
+    color: var(--text-light);
+}
+
+.form-container {
+    background-color: #000;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: white;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Background Pattern */
+.form-container::before {
+   
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 50%;
+    background-image: radial-gradient(circle, rgba(244, 162, 97, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.form-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.form-subtitle {
+    color: #999;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(244, 162, 97, 0.2);
+    border-radius: 5px;
+}
+
+.country-code {
+    width: 80px;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid rgba(244, 162, 97, 0.2);
+    color: white;
+    font-size: 0.9rem;
+}
+
+.phone-number-input {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.country-code::placeholder,
+.phone-number-input::placeholder {
+    color: #666;
+}
+
+
+
+/* Focus states */
+.country-code:focus,
+.phone-number-input:focus {
+    outline: none;
+}
+
+.phone-input-container:focus-within {
+    border-color: orange;
+}
+
+
+.phone-number-input,
+.name-inputs,
+.gender-options {
+    width: 100%;
+    max-width: 100%;
+}
+
+label {
+    display: block;
+    color: orange;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(244, 162, 97, 0.2);
+    border-radius: 5px;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.name-inputs .form-input {
+    flex: 1;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: orange;
+}
+
+.form-input::placeholder {
+    color: #666;
+}
+
+.name-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.gender-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.gender-btn {
+    flex: 1;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(244, 162, 97, 0.2);
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gender-btn.active {
+    background: rgba(244, 162, 97, 0.1);
+    border-color: orange;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.next-btn {
+    width: 100%;
+    padding: 15px;
+    background:orange;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+}
+
+.next-btn:hover {
+    background: #f5b17f;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .form-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .name-inputs {
+        flex-direction: column;
+    }
+}
+
+/* Small screens */
+@media (max-width: 380px) {
+    .form-container {
+        padding: 1rem;
+    }
+
+    .form-header h1 {
+        font-size: 1.5rem;
+    }
+}

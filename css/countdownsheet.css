@@ -1,0 +1,303 @@
+:root {
+    --text-light: #ffffff;
+    --primary-red: #ff4d4d;
+    --primary-orange: orange;
+    --bg-dark: #111111;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Geologica', sans-serif;
+    font-size: 16;
+}
+.payment-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+.timer {
+    font-size: 3.5rem;
+    color: #ff4d4d;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 500;
+}
+.main-text {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.sub-text {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+.card-wrapper {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+.wallet-label {
+    color: #ffa502;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+.wallet-input-group {
+    display: flex;
+    align-items: center;
+    background-color: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+.wallet-address {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+.copy-btn {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin-right: 5px;
+    font-weight: 500;
+}
+.network-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+.network-value {
+    color: #ff4d4d;
+}
+.or-divider {
+    position: relative;
+    text-align: center;
+    margin: 30px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+}
+.or-divider::before,
+.or-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.or-divider::before {
+    left: 0;
+}
+.or-divider::after {
+    right: 0;
+}
+.qr-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.qr-text {
+    font-size: 1.2rem;
+    color: #fff;
+    max-width: 50%;
+}
+.qr-code {
+    width: 150px;
+    height: 150px;
+}
+.dotted-line {
+    border-top: 8px dashed #fff;
+    margin: 30px 0;
+}
+.amount-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+.amount-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+.amount-value {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: 500;
+}
+.payment-instruction {
+    text-align: center;
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 20px 0;
+}
+.pay-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 20px 0;
+}
+.note-title {
+    color: #ffa502;
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    font-weight: 500;
+}
+.note-text {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-size: 0.9rem;
+    max-width: 600px;
+    margin: 10px auto;
+    line-height: 1.5;
+}
+
+.copy-btn {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin-right: 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background-color: #ff6666;
+    transform: translateY(-2px);
+}
+
+.pay-btn {
+    transition: all 0.3s ease;
+}
+
+.pay-btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .payment-container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+    
+    .timer {
+        font-size: 2.8rem;
+    }
+    
+    .main-text {
+        font-size: 1.3rem;
+        padding: 0 10px;
+    }
+    
+    .sub-text {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+    
+    .wallet-label {
+        font-size: 1.1rem;
+    }
+    
+    .wallet-address {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+    .copy-btn {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .qr-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .qr-text {
+        max-width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+    
+    .qr-code {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+    
+    .amount-value {
+        font-size: 2rem;
+    }
+    
+    .payment-instruction {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-container {
+        padding: 10px;
+    }
+    
+    .timer {
+        font-size: 2.5rem;
+    }
+    
+    .main-text {
+        font-size: 1.1rem;
+    }
+    
+    .card-wrapper {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .wallet-input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .copy-btn {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .qr-code {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .amount-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .amount-value {
+        font-size: 1.8rem;
+    }
+}
