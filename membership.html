@@ -11,6 +11,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <style>
+       
+        .iti {
+            width: 100%;
+            margin-top: 5px;
+        }
+        .iti__flag-container {
+            padding: 0;
+        }
+        .iti__selected-flag {
+            padding: 0 6px 0 8px;
+        }
+       
+        .phone-input-container {
+            display: none;
+        }
+        
+        #phone {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
@@ -39,6 +65,9 @@
 
             <div class="form-group">
                 <label>Phone number</label>
+              
+                <input type="tel" id="phone" class="form-input">
+                
                 <div class="phone-input-container">
                     <input type="text" placeholder="+1" class="country-code">
                     <input type="tel" placeholder="684 468 8913" class="phone-number-input">
@@ -84,9 +113,26 @@
  
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     console.log('Finished Loading');
+
+    // Initialize intl-tel-input
+    const phoneInput = document.querySelector("#phone");
+            const iti = window.intlTelInput(phoneInput, {
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                separateDialCode: true,
+                initialCountry: "auto",
+                geoIpLookup: function(callback) {
+                    fetch("https://ipapi.co/json")
+                        .then(res => res.json())
+                        .then(data => callback(data.country_code))
+                        .catch(() => callback("US"));
+                },
+            });
+
 
     const form = document.querySelector('.membership-form');
     const nextButton = document.getElementById('nextButton');
@@ -98,17 +144,26 @@
 
         console.log('Button clicked');
 
+        // Get the full phone number with country code
+        const phoneNumber = iti.getNumber();
+
         // Collect all form data
         const formData = {
             firstname: form.querySelector('input[placeholder="First name"]').value,
             lastname: form.querySelector('input[placeholder="Last name"]').value,
             gender: form.querySelector('.gender-btn.active').textContent,
-            phone: form.querySelector('.country-code').value+form.querySelector('.phone-number-input').value,
+            phone: phoneNumber,
             email: form.querySelector('input[type="email"]').value,
             address: form.querySelector('input[placeholder="Address"]').value,
             state: form.querySelector('input[placeholder="State"]').value,
             dob: form.querySelector('input[placeholder="YYYY-MM-DD"]').value
         };
+
+         // Validate phone number
+         if (!iti.isValidNumber()) {
+                    errorPopup.show('Please enter a valid phone number');
+                    return;
+                }
 
         // Validate form data
         const validation = validateForm(formData);
