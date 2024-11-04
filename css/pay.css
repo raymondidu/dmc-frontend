@@ -64,7 +64,7 @@
 }
 
 .payment-card.active {
-    border-color: orange;
+    border-color: #770e0e;
     background: rgba(244, 162, 97, 0.1);
 }
 
@@ -73,7 +73,7 @@
 }
 
 .plan-label {
-    color: orange;
+    color: #770e0e;
     font-size: 1rem;
     margin-bottom: 0.5rem;
 }
@@ -102,13 +102,13 @@
 }
 
 .payment-card.active .radio-button {
-    border-color: orange;
+    border-color: #770e0e;
 }
 
 .radio-circle {
     width: 12px;
     height: 12px;
-    background-color:orange;
+    background-color:#770e0e;
     border-radius: 50%;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -144,7 +144,7 @@
 }
 
 .next-button {
-    background-color: orange;
+    background-color: #770e0e;
     color: #000;
     border: none;
     border-radius: 5px;
@@ -159,7 +159,7 @@
 
 .next-button:hover {
     transform: translateY(-2px);
-    background-color: orange;
+    background-color: #770e0e;
 }
 
 /* Mobile Responsive */

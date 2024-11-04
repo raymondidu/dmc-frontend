@@ -1,6 +1,6 @@
 
 :root {
-    --primary-color: orange;
+    --primary-color: #770e0e;
     --dark-bg: #1a1a1a;
     --text-light: #ffffff;
 }
@@ -37,7 +37,7 @@ body {
 }
 
 .text-orange {
-    color: #f4a261;
+    color: #770e0e;
 }
 
 .hamburger {
@@ -131,7 +131,7 @@ body {
 }
 
 .cta-button {
-    background-color: orange;
+    background-color: #770e0e;
     color: #000;
     padding: 15px 40px;
     border-radius: 5px;
@@ -200,7 +200,7 @@ body {
 }
 
 .academy-label {
-    color: #f4a261;
+    color: #770e0e;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
 }
@@ -214,7 +214,7 @@ body {
 }
 
 .learn-more-btn {
-    background-color: orange;
+    background-color: #770e0e;
     color: #000;
     padding: 12px 40px;
     border: none;
@@ -228,7 +228,7 @@ body {
 }
 
 .learn-more-btn:hover {
-    background-color: orange;
+    background-color: #770e0e;
     color: #000;
 }
 
@@ -321,7 +321,7 @@ body {
 }
 
 .why-us-label {
-    color: #f4a261;
+    color: #770e0e;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
 }
@@ -358,7 +358,7 @@ body {
     top: 0.5rem;
     width: 1rem;
     height: 2px;
-    background-color: #f4a261;
+    background-color: #770e0e;
 }
 
 /* benefit section */
@@ -371,7 +371,7 @@ body {
 }
 
 .benefits-label {
-    color: #f4a261;
+    color: #770e0e;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
 }
@@ -459,7 +459,7 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(244, 162, 97, 0.8);
+    background: #770e0e;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -469,7 +469,7 @@ body {
 }
 
 .slider-nav:hover {
-    background: rgba(244, 162, 97, 1);
+    background: #770e0e;
 }
 
 .slider-prev {
@@ -538,7 +538,7 @@ body {
 }
 
 .cta-button {
-    background-color: orange;
+    background-color: #770e0e;
     color: #000;
     padding: 15px 40px;
     border: none;
@@ -552,7 +552,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color:orange;
+    background-color:#770e0e;
     transform: translateY(-2px);
 }
 
@@ -589,7 +589,7 @@ footer {
 }
 
 .socials-label {
-    color: orange;
+    color: #770e0e;
     font-size: 1.1rem;
     margin-bottom: 1rem;
 }
@@ -607,7 +607,7 @@ footer {
 }
 
 .social-icons a:hover {
-    color: orange;
+    color: #770e0e;
 }
 
 .footer-nav {
@@ -652,7 +652,7 @@ footer {
     padding: 12px;
     border: none;
     border-radius: 5px;
-    background-color: orange;
+    background-color: #770e0e;
     color: black;
     font-weight: 600;
     cursor: pointer;
@@ -660,7 +660,7 @@ footer {
 }
 
 .subscribe-button:hover {
-    background-color:orange;
+    background-color:#770e0e;
 }
 
 .copyright {
@@ -988,7 +988,7 @@ footer {
 
     .socials-label {
         text-align: left;
-        color: #f4a261;
+        color: #770e0e;
     }
 
     .social-icons {
@@ -996,7 +996,7 @@ footer {
     }
 
     .social-icons a {
-        color: #f4a261;
+        color: #770e0e;
     }
 
     .col-lg-6 {
@@ -1014,7 +1014,7 @@ footer {
     }
 
     .subscribe-form button {
-        background-color: #f4a261;
+        background-color:#770e0e;
         padding: 15px;
     }
 

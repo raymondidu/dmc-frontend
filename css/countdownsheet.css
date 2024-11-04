@@ -1,7 +1,7 @@
 :root {
     --text-light: #ffffff;
     --primary-red: #ff4d4d;
-    --primary-orange: orange;
+    --primary-orange: #770e0e;
     --bg-dark: #111111;
 }
 
@@ -43,7 +43,7 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 .wallet-label {
-    color: #ffa502;
+    color: #770e0e;
     font-size: 1.2rem;
     margin-bottom: 15px;
 }
@@ -153,7 +153,7 @@ body {
     margin: 20px 0;
 }
 .note-title {
-    color: #ffa502;
+    color: #770e0e;
     text-align: center;
     font-size: 1.1rem;
     margin-top: 20px;

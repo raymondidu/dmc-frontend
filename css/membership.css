@@ -103,7 +103,7 @@ body {
 }
 
 .phone-input-container:focus-within {
-    border-color: orange;
+    border-color: #770e0e;
 }
 
 
@@ -116,7 +116,7 @@ body {
 
 label {
     display: block;
-    color: orange;
+    color: #770e0e;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
@@ -137,7 +137,7 @@ label {
 
 .form-input:focus {
     outline: none;
-    border-color: orange;
+    border-color: #770e0e;
 }
 
 .form-input::placeholder {
@@ -169,7 +169,7 @@ label {
 
 .gender-btn.active {
     background: rgba(244, 162, 97, 0.1);
-    border-color: orange;
+    border-color: #770e0e;
 }
 
 .mt-3 {
@@ -179,7 +179,7 @@ label {
 .next-btn {
     width: 100%;
     padding: 15px;
-    background:orange;
+    background:#770e0e;
     border: none;
     border-radius: 5px;
     color: black;
@@ -191,7 +191,7 @@ label {
 }
 
 .next-btn:hover {
-    background: #f5b17f;
+    background: #770e0e;
 }
 
 /* Mobile Responsive */
